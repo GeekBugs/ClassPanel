@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.f1reking.classpanel.R;
 import com.f1reking.classpanel.adapter.GridViewItemAdapter;
-import com.f1reking.classpanel.adapter.ViewPagerHomeTypeAdapter;
+import com.f1reking.classpanel.adapter.ViewPagerAdapter;
 import com.f1reking.classpanel.entity.ClassEntity;
 
 import java.util.ArrayList;
@@ -59,7 +59,13 @@ public class GridViewGallery extends LinearLayout {
     }
 
     private void initDots() {
-        viewPagerSize = list.size() / pageItemCount + 1;
+        if (list.size() % pageItemCount == 0) {
+            viewPagerSize = list.size() / pageItemCount;
+        } else {
+            viewPagerSize = list.size() / pageItemCount + 1;
+
+        }
+
 
         if (0 < viewPagerSize) {
             llDots.removeAllViews();
@@ -122,7 +128,7 @@ public class GridViewGallery extends LinearLayout {
         for (int i = 0; i < viewPagerSize; i++) {
             listViews.add(getViewPagerItem(i));
         }
-        viewPager.setAdapter(new ViewPagerHomeTypeAdapter(listViews));
+        viewPager.setAdapter(new ViewPagerAdapter(listViews));
     }
 
 
@@ -142,8 +148,8 @@ public class GridViewGallery extends LinearLayout {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                int i = position +1;
-                Toast.makeText(context,"当前点击的是第"+i+"个",Toast.LENGTH_SHORT).show();
+                int i = position + 1;
+                Toast.makeText(context, "当前点击的是第" + i + "个", Toast.LENGTH_SHORT).show();
             }
         });
         return gridView;
