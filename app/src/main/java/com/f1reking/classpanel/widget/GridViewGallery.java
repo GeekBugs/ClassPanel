@@ -59,13 +59,13 @@ public class GridViewGallery extends LinearLayout {
     }
 
     private void initDots() {
+        // 计算出总页数
         if (list.size() % pageItemCount == 0) {
             viewPagerSize = list.size() / pageItemCount;
         } else {
             viewPagerSize = list.size() / pageItemCount + 1;
 
         }
-
 
         if (0 < viewPagerSize) {
             llDots.removeAllViews();
